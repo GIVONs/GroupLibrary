@@ -12,7 +12,7 @@ namespace GroupLibrary
     {
         Bibliotek library = new Bibliotek();
         
-        public async Task UserInterface()
+        public void UserInterface()
 
         {
             bool running = true; 
@@ -31,7 +31,7 @@ namespace GroupLibrary
                 Console.WriteLine("LIBRARY");
                 Console.WriteLine(new string('-', 62));
                 var result = InputManagement.MenuInput(menu, 1, 4);
-                Console.Clear(); // Kan ta bort denna ifall det känns som att den förstör flödet 
+                Console.Clear(); // Kan ta bort denna ifall det känns som att den förstör 
 
                 switch (result)
                 {
