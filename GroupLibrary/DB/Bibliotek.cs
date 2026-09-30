@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 
 
-/*
+
 namespace GroupLibrary.DB
 {
     
@@ -26,13 +26,13 @@ namespace GroupLibrary.DB
         }
     public Book? findBook(int id)
         {
-            Console.WriteLine("Please submit book id by typing ID-number");
+            Console.Write("ID-number: ");
             id = Convert.ToInt16(Console.ReadLine());
             foreach (Book i in books)
             {
                 if (i.Id == id)
                 {
-                    Console.WriteLine($"Found, Book id: {i.Id} Title: {i.title}, Author: {i.author}");
+                    Console.WriteLine($"\nFound, Book id: {i.Id} Title: {i.title}, Author: {i.author}");
                     return i;
                 }
             }
@@ -48,7 +48,7 @@ namespace GroupLibrary.DB
         {
             foreach (Book i in books)
             {
-                if (!i.Available == false)
+                if (!i.isRented == false)
                 {
                     Console.WriteLine($"Found, Book id: {i.Id} Title: {i.title}, Author: {i.author}");
                     return new List<Book>(books);
@@ -59,4 +59,3 @@ namespace GroupLibrary.DB
     }
 
 }
-*/
