@@ -60,7 +60,9 @@ namespace GroupLibrary
                         break;
 
                     case 3:
-
+                        Console.WriteLine(new string('-', 62));
+                        Console.WriteLine("RETURN BOOK");
+                        Console.WriteLine(new string('-', 62));
                         Book? bookToReturn = library.findBook(0);
                         if (bookToReturn != null)
                         {
