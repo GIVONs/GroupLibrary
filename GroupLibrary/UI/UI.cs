@@ -31,7 +31,7 @@ namespace GroupLibrary
                 Console.WriteLine("LIBRARY");
                 Console.WriteLine(new string('-', 62));
                 var result = InputManagement.MenuInput(menu, 1, 4);
-                Console.Clear();
+                Console.Clear(); // Kan ta bort denna ifall det känns som att den förstör flödet 
 
                 switch (result)
                 {
