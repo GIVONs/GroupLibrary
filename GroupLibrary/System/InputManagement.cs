@@ -20,5 +20,18 @@ namespace GroupLibrary.System
                     return input;
             }
         }
+        public static int InputControl(string text)
+        {
+            while (true)
+            {
+                Console.WriteLine(text);
+
+                if (!int.TryParse(Console.ReadLine(), out int id))
+                {
+                    Console.WriteLine("Försök igen");
+                }
+                else return id;
+            }
+        }
     }
 }
