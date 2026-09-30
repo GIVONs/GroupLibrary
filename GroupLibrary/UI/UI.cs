@@ -16,7 +16,8 @@ namespace GroupLibrary.UI
 
                 """;
 
-            Console.WriteLine(menu);
+            InputManagement.MenuInput();
+
         }
 
         public bool CloseProgram(string input)
