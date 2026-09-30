@@ -73,8 +73,8 @@ namespace GroupLibrary
                         break;
 
                     case 4:
-
-                        running = CloseProgram();
+                        Console.WriteLine("Thank you for visiting!");
+                        running = false;
                         break;
 
                 }
@@ -97,7 +97,7 @@ namespace GroupLibrary
 
         }
 
-        public bool CloseProgram()
+        private bool CloseProgram()
         {
             Console.WriteLine("\nPress Enter to return to menu, or type 'exit' to close the program.");
             string input = Console.ReadLine();

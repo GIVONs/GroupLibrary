@@ -15,9 +15,9 @@ namespace GroupLibrary.DB
         public List<Book> books = new List<Book>();
         public Bibliotek()
         {
-            Book book1 = new Book(1, " Harry Potter", ("JK Rowling"));
-            Book book2 = new Book(2, " The hobbit", "JR Tolkien");
-            Book book3 = new Book(3, " The return of the king", "JR Tolkien");
+            Book book1 = new Book(1, "Harry Potter", ("JK Rowling"));
+            Book book2 = new Book(2, "The hobbit", "JR Tolkien");
+            Book book3 = new Book(3, "The return of the king", "JR Tolkien");
 
             books.Add(book1);
             books.Add(book2);
