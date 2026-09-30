@@ -54,9 +54,6 @@ namespace GroupLibrary.Models
             else if (this.isRented)
             {
                 Console.WriteLine("IS RENTED");
-            } else
-            {
-                return null;
             }
         }
     }
