@@ -6,109 +6,111 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 
-namespace GroupLibrary.UI
+namespace GroupLibrary
 {
     public class UI
     {
         Bibliotek library = new Bibliotek();
         
-        public void UserInterface()
+        public async Task UserInterface()
 
         {
             bool running = true; 
             while (running)
             {
+
                 string menu = """
                 [1] Show all books
                 [2] Rent book
                 [3] Return book
-                [4] Exit
+                [4] Exit app
 
                 """;
-                Console.WriteLine(menu);
-                Console.WriteLine("Gör ett menyval mellan 1-4");
-                string input = Console.ReadLine();
 
-                InputManagement.MenuInput(menu, 1, 5);
+                Console.WriteLine(new string('-', 62));
+                Console.WriteLine("LIBRARY");
+                Console.WriteLine(new string('-', 62));
+                var result = InputManagement.MenuInput(menu, 1, 4);
+                Console.Clear();
 
-                switch (input)
+                switch (result)
                 {
-                    case "1":
-                        Console.WriteLine("ALLA BÖCKER");
+                    case 1:
 
-                        foreach (Book book in library.GetBooks())
+                        Console.WriteLine(new string('-', 62));
+                        Console.WriteLine("ALL BOOKS\n");
+                        PrintBook(library.GetBooks());
+                        running = CloseProgram();
+                 
+                        break;
+
+                    case 2:
+
+                        Console.WriteLine(new string('-', 62));
+                        Console.WriteLine("RENT BOOK");
+                        Console.WriteLine(new string('-', 62));
+                        Book? bookToRent = library.findBook(0);
+
+                        if (bookToRent != null)
                         {
-                            Console.WriteLine();
-                            Console.WriteLine(book);
-                            Console.WriteLine();
+                            bookToRent.RentBook();
                         }
+                        running = CloseProgram();
 
                         break;
 
-                    case "2":
-                        Console.WriteLine("Enter ID for book to rent: ");
-                        string rentInput = Console.ReadLine();
+                    case 3:
 
-                        if (!int.TryParse(rentInput, out int lendId))
+                        Book? bookToReturn = library.findBook(0);
+                        if (bookToReturn != null)
                         {
-                            Console.WriteLine("Invalid ID - Must be an integer. ");
-                            break;
+                            bookToReturn.Return();
                         }
-
-                        Book? foundBook = library.findBook(lendId);
-                        if (foundBook == null)
-                        {
-                            Console.WriteLine("Ingen bok med det IDt hittades.");
-                        }
-                        else if (foundBook.RentBook())
-                        {
-                            Console.WriteLine($"{foundBook.title} has been rented.");
-                        }
-                        else
-                        {
-                            Console.WriteLine($"{foundBook.title} is not available.");
-                        }
+                        running = CloseProgram();
 
                         break;
 
-                    case "3":
-                        Console.WriteLine("Enter ID for book to rent: ");
-                        string returnInput = Console.ReadLine();
+                    case 4:
 
-                        if (!int.TryParse(returnInput, out int returnId))
-                        {
-                            Console.WriteLine("Invalid ID - Must be an integer. ");
-                            break;
-                        }
-
-                        Book? returnBook = library.findBook(returnId);
-                        if (returnBook == null)
-                        {
-                            Console.WriteLine("Ingen bok med det IDt hittades.");
-                        }
-                        else if (returnBook.RentBook())
-                        {
-                            Console.WriteLine($"{returnBook.title} has been rented.");
-                        }
-                        else
-                        {
-                            Console.WriteLine($"{returnBook.title} is not available.");
-                        }
-
-                        break;
-
-                    case "4":
                         running = CloseProgram();
                         break;
+
                 }
             }
            
         }
 
+        private void PrintBook(List<Book> books)
+        {
+            Console.WriteLine($"{"ID", -5}{"Title", -28}{"Author", -18}Status");
+            Console.WriteLine(new string('-', 62));
+
+            foreach (Book book in books)
+            {
+                string status = book.isRented ? "Rented" : "Available";
+                Console.WriteLine($"{book.Id, -5}{book.title, -28}{book.author, -18}{status}");
+                Console.WriteLine();
+            }
+            Console.WriteLine(new string('-', 62));
+
+        }
+
         public bool CloseProgram()
         {
-            Console.WriteLine("Thank you for visiting!");
-            return false;
+            Console.WriteLine("\nPress Enter to return to menu, or type 'exit' to close the program.");
+            string input = Console.ReadLine();
+
+            if (input.ToUpper().Trim().Equals("EXIT"))
+            {
+                Console.Clear();
+                return false;
+            }
+            else
+            {
+                Console.Clear();
+            }
+            
+            return true;
         }
 
     }
