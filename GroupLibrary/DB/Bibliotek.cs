@@ -32,11 +32,11 @@ namespace GroupLibrary.DB
             {
                 if (i.Id == id)
                 {
-                    Console.WriteLine($"\nFound, Book id: {i.Id} Title: {i.title}, Author: {i.author}");
+                    Console.WriteLine($"\nFound, Book id: {i.Id} Title: {i.title}, Author: {i.author}.");
                     return i;
                 }
             }
-            Console.WriteLine("Fail to find, book does not exist or ID not found");
+            Console.WriteLine("Failed to find ID, book does not exist or wrong ID input.");
             return null;
         }
         public List<Book> GetBooks()
@@ -50,7 +50,7 @@ namespace GroupLibrary.DB
             {
                 if (!i.isRented == false)
                 {
-                    Console.WriteLine($"Found, Book id: {i.Id} Title: {i.title}, Author: {i.author}");
+                    Console.WriteLine($"Found book id: {i.Id} Title: {i.title}, Author: {i.author}.");
                     return new List<Book>(books);
                 }
             }

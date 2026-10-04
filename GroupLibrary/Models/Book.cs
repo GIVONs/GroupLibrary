@@ -28,7 +28,7 @@ namespace GroupLibrary.Models
             else
             {
                 Console.WriteLine($"Error - The book is allready rented.");
-                return null;
+                return false;
             }
         }
 
@@ -41,19 +41,7 @@ namespace GroupLibrary.Models
             } else
             {
                 Console.WriteLine($"Request Error: Book ID:{this.Id} is in store.");
-                return null;
-            }
-        }
-
-        public void showStatus()
-        {
-            if (!this.isRented)
-            {
-                Console.WriteLine("IN STORAGE");
-            }
-            else if (this.isRented)
-            {
-                Console.WriteLine("IS RENTED");
+                return false;
             }
         }
     }
