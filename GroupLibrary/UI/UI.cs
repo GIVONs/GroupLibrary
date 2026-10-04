@@ -21,34 +21,55 @@ namespace GroupLibrary
 
                 string menu = """
                 [1] Show all books
-                [2] Rent book
-                [3] Return book
-                [4] Exit app
+                [2] Find Book
+                [3] Rent book
+                [4] Return book
+                [5] Exit app
 
                 """;
 
-                Console.WriteLine(new string('-', 62));
-                Console.WriteLine("LIBRARY");
-                Console.WriteLine(new string('-', 62));
-                var result = InputManagement.MenuInput(menu, 1, 4);
-                Console.Clear(); // Kan ta bort denna ifall det känns som att den förstör flödet 
+                Console.Clear();
+                MenuHeader("LIBRARY");
+                var result = InputManagement.MenuInput(menu, 1, 5);
 
                 switch (result)
                 {
                     case 1:
+                        Console.Clear();
 
-                        Console.WriteLine(new string('-', 62));
-                        Console.WriteLine("ALL BOOKS\n");
+                        MenuHeader("ALL BOOKS");
                         PrintBook(library.GetBooks());
                         running = CloseProgram();
                  
                         break;
 
                     case 2:
+                        Console.Clear();
 
-                        Console.WriteLine(new string('-', 62));
-                        Console.WriteLine("RENT BOOK");
-                        Console.WriteLine(new string('-', 62));
+                        MenuHeader("FIND BOOK");
+                        SearchMenu();
+                        result = InputManagement.ChoiceInput(1, 3);
+                        switch (result)
+                        {
+                            case 1:
+                                MenuHeader("Find by Book-ID");
+                                Book? findBook = library.findBook(0);
+                                break;
+
+                            case 2:
+
+                                break;
+
+                            case 3:
+                                continue;
+
+                        }
+                        break;
+
+                    case 3:
+                        Console.Clear();
+
+                        MenuHeader("RENT BOOK");
                         Book? bookToRent = library.findBook(0);
 
                         if (bookToRent != null)
@@ -56,10 +77,10 @@ namespace GroupLibrary
                             bookToRent.RentBook();
                         }
                         running = CloseProgram();
-
                         break;
 
-                    case 3:
+                    case 4:
+                        Console.Clear();
 
                         Book? bookToReturn = library.findBook(0);
                         if (bookToReturn != null)
@@ -67,10 +88,9 @@ namespace GroupLibrary
                             bookToReturn.Return();
                         }
                         running = CloseProgram();
-
                         break;
 
-                    case 4:
+                    case 5:
 
                         running = CloseProgram();
                         break;
@@ -78,6 +98,28 @@ namespace GroupLibrary
                 }
             }
            
+        }
+
+        private void MenuHeader(string text1)
+        {
+            Console.WriteLine(new string('-', 62));
+            Console.WriteLine(text1);
+            Console.WriteLine(new string('-', 62));
+        }
+
+        private void SearchMenu()
+        {
+            Console.WriteLine(
+                """
+                Hur vill du söka boken?
+
+                [1] Sök med Bok-ID
+
+                [2] Sök med ord
+
+                [3] Gå tillbaka
+
+                """);
         }
 
         private void PrintBook(List<Book> books)

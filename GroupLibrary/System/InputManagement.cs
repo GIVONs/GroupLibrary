@@ -20,6 +20,19 @@ namespace GroupLibrary.System
                     return input;
             }
         }
+
+        public static int ChoiceInput(int min, int max)
+        {
+            while (true)
+            {
+                if (!int.TryParse(Console.ReadLine(), out int input) || input < min || input > max)
+                {
+                    Console.WriteLine($"försök igen, välj mellan {min} och {max}");
+                }
+                else
+                    return input;
+            }
+        }
         public static int InputControl(string text)
         {
             while (true)
